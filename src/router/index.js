@@ -28,7 +28,7 @@ const routes = [
     component: Profile,
   },
   {
-    // 动态路由用"/:属性"表示路由时需要用到参数传递
+    // 动态路由用"/:属性"表示路由时需要用到参数传递--
     path: "/detail/:iid",
     component: Detail,
   },
