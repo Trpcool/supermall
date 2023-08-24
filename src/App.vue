@@ -1,28 +1,33 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <mainTabBar class="main-tab-bar" v-show="isShowMainBar"></mainTabBar>
+    <!-- exclude这个属性是除以下组件可以不用保持活性，路由跳转时经历一个完整的生命周期 -->
+    <keep-alive exclude="Detail">
+      <router-view></router-view>
+    </keep-alive>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import mainTabBar from "./components/content/main-tabbar/main-tab-bar";
 export default {
-  name: 'App',
+  name: "App",
+
   components: {
-    HelloWorld
-  }
-}
+    mainTabBar,
+  },
+  computed: {
+    //
+    isShowMainBar() {
+      return this.$route.path.indexOf("/detail") >= 0 ? false : true;
+    },
+  },
+};
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+@import "assets/CSS/base.css";
+.main-tab-bar {
+  z-index: 5;
 }
 </style>
